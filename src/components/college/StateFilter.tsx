@@ -24,37 +24,37 @@ export function StateFilter({ value, onChange }: StateFilterProps) {
   };
 
   return (
-    <details className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
+    <details className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm">
+      <summary className="cursor-pointer list-none text-sm font-semibold text-[var(--foreground)]">
         States and UTs
-        <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
+        <span className="ml-2 rounded-full bg-[var(--surface-elevated)] px-2 py-0.5 text-xs font-medium text-[var(--muted)]">
           {selectedCount === 0 ? "All States" : `${selectedCount} selected`}
         </span>
       </summary>
 
       <div className="mt-4 max-h-72 overflow-auto pr-1">
-        <label className="flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 text-sm hover:bg-slate-50">
+        <label className="flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 text-sm hover:bg-[var(--surface-elevated)]">
           <input
             checked={value.length === 0}
             onChange={() => toggleState("__all__")}
             type="radio"
             name="state-filter"
           />
-          <span className="font-medium text-slate-700">All States</span>
+          <span className="font-medium text-[var(--foreground)]">All States</span>
         </label>
 
         <div className="mt-2 grid gap-1 sm:grid-cols-2">
           {INDIAN_STATES_AND_UTS.map((state) => (
             <label
               key={state}
-              className="flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 text-sm hover:bg-slate-50"
+              className="flex cursor-pointer items-center gap-3 rounded-xl px-2 py-2 text-sm hover:bg-[var(--surface-elevated)]"
             >
               <input
                 checked={value.includes(state)}
                 onChange={() => toggleState(state)}
                 type="checkbox"
               />
-              <span className="text-slate-700">{state}</span>
+              <span className="text-[var(--foreground)]">{state}</span>
             </label>
           ))}
         </div>

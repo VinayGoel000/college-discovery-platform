@@ -6,6 +6,10 @@ export type College = {
   fees: number;
   rating: number;
   availableCourses: string[];
+  acceptedExams: Array<{
+    exam: string;
+    closingRank: number;
+  }>;
   description?: string;
 };
 

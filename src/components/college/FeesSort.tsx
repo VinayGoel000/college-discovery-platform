@@ -10,12 +10,12 @@ type FeesSortProps = {
 export function FeesSort({ value, onChange }: FeesSortProps) {
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-slate-700" htmlFor="fees-sort">
+      <label className="block text-sm font-medium text-[var(--foreground)]" htmlFor="fees-sort">
         Fees Sort
       </label>
       <select
         id="fees-sort"
-        className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+        className="h-12 w-full rounded-2xl border border-[var(--border)] bg-[var(--input)] px-4 text-sm text-[var(--input-foreground)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--ring)]"
         onChange={(event) => onChange(event.target.value as CollegeSortDirection)}
         value={value}
       >

@@ -15,12 +15,12 @@ export function CollegeFilters({ filters, onChange }: CollegeFiltersProps) {
   return (
     <div className="space-y-4">
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="location">
+        <label className="mb-2 block text-sm font-medium text-[var(--foreground)]" htmlFor="location">
           Location
         </label>
         <input
           id="location"
-          className="h-11 w-full rounded-lg border border-[var(--border)] px-3 text-sm outline-none transition focus:border-[var(--primary)]"
+          className="h-11 w-full rounded-lg border border-[var(--border)] bg-[var(--input)] px-3 text-sm text-[var(--input-foreground)] outline-none transition placeholder:text-[var(--placeholder)] focus:border-[var(--primary)]"
           onChange={(event) => onChange({ ...filters, location: event.target.value })}
           placeholder="Filter by location"
           type="text"
@@ -29,7 +29,7 @@ export function CollegeFilters({ filters, onChange }: CollegeFiltersProps) {
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="min-rating">
+        <label className="mb-2 block text-sm font-medium text-[var(--foreground)]" htmlFor="min-rating">
           Minimum Rating
         </label>
         <input
@@ -44,12 +44,12 @@ export function CollegeFilters({ filters, onChange }: CollegeFiltersProps) {
       </div>
 
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="fee-range">
+        <label className="mb-2 block text-sm font-medium text-[var(--foreground)]" htmlFor="fee-range">
           Fee Range
         </label>
         <select
           id="fee-range"
-          className="h-11 w-full rounded-lg border border-[var(--border)] px-3 text-sm outline-none transition focus:border-[var(--primary)]"
+          className="h-11 w-full rounded-lg border border-[var(--border)] bg-[var(--input)] px-3 text-sm text-[var(--input-foreground)] outline-none transition focus:border-[var(--primary)]"
           onChange={(event) => onChange({ ...filters, feeRange: event.target.value as CollegeFilterState["feeRange"] })}
           value={filters.feeRange}
         >

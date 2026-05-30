@@ -8,12 +8,12 @@ type CollegeSearchBarProps = {
 export function CollegeSearchBar({ value, onChange }: CollegeSearchBarProps) {
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-medium text-slate-700" htmlFor="college-search">
+      <label className="block text-sm font-medium text-[var(--foreground)]" htmlFor="college-search">
         Search by college name or course
       </label>
       <input
         id="college-search"
-        className="h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+        className="h-12 w-full rounded-2xl border border-[var(--border)] bg-[var(--input)] px-4 text-sm text-[var(--input-foreground)] outline-none transition placeholder:text-[var(--placeholder)] focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--ring)]"
         onChange={(event) => onChange(event.target.value)}
         placeholder="Try IIT Delhi, NIT Trichy, BTech, MBA..."
         type="search"

@@ -16,7 +16,7 @@ export function CollegePagination({ currentPage, totalPages, onPageChange }: Col
       >
         Previous
       </button>
-      <span className="text-sm text-slate-600">
+      <span className="text-sm text-[var(--muted)]">
         Page {currentPage} of {totalPages}
       </span>
       <button
