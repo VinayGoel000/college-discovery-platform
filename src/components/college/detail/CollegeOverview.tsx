@@ -37,7 +37,9 @@ export function CollegeOverview({ college }: CollegeOverviewProps) {
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl bg-slate-50 p-4">
               <p className="text-xs uppercase tracking-wide text-slate-500">Annual Fees</p>
-              <p className="mt-2 text-sm font-semibold text-slate-900">{college.fees}</p>
+              <p className="mt-2 text-sm font-semibold text-slate-900">
+                {new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(college.fees)}
+              </p>
             </div>
             <div className="rounded-xl bg-slate-50 p-4">
               <p className="text-xs uppercase tracking-wide text-slate-500">Website</p>

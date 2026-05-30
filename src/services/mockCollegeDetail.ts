@@ -1,164 +1,84 @@
 import { type CollegeDetail } from "@/types";
 
 export const mockCollegeDetails: Record<string, CollegeDetail> = {
-  c1: {
-    id: "c1",
-    name: "National Institute of Technology",
-    location: "Delhi, India",
-    rating: 4.7,
-    fees: "INR 1.8L / year",
+  "iit-delhi": {
+    id: "iit-delhi",
+    name: "Indian Institute of Technology Delhi",
+    state: "Delhi",
+    location: "Hauz Khas, New Delhi",
+    rating: 4.9,
+    fees: 250000,
+    availableCourses: ["BTech", "MTech", "MBA", "MSc"],
     imageUrl:
       "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1400&q=80",
     description:
-      "A highly regarded engineering institution known for strong academics, disciplined campus culture, and solid placement outcomes.",
-    establishedYear: 2010,
+      "Premier engineering institute with top-tier research and placements.",
+    establishedYear: 1961,
     ownershipType: "Public",
-    websiteUrl: "https://nitdelhi.ac.in",
+    websiteUrl: "https://home.iitd.ac.in",
     courses: [
-      {
-        id: "c1",
-        name: "B.Tech Computer Science",
-        duration: "4 Years",
-        totalFees: "INR 7.2L",
-        degreeType: "Undergraduate",
-        seatsAvailable: 120
-      },
-      {
-        id: "c2",
-        name: "B.Tech Electronics",
-        duration: "4 Years",
-        totalFees: "INR 6.8L",
-        degreeType: "Undergraduate",
-        seatsAvailable: 90
-      },
-      {
-        id: "c3",
-        name: "M.Tech Data Science",
-        duration: "2 Years",
-        totalFees: "INR 2.4L",
-        degreeType: "Postgraduate",
-        seatsAvailable: 30
-      }
+      { id: "iitd-c1", name: "B.Tech Computer Science and Engineering", duration: "4 Years", totalFees: "INR 8L", degreeType: "Undergraduate", seatsAvailable: 120 },
+      { id: "iitd-c2", name: "B.Tech Electrical Engineering", duration: "4 Years", totalFees: "INR 8L", degreeType: "Undergraduate", seatsAvailable: 90 },
+      { id: "iitd-c3", name: "MBA", duration: "2 Years", totalFees: "INR 10L", degreeType: "Postgraduate", seatsAvailable: 60 }
     ],
     placement: {
-      averagePackage: "INR 12.4 LPA",
-      highestPackage: "INR 38 LPA",
-      placementPercentage: "92%",
-      totalRecruiters: 110,
-      topRecruiters: ["Google", "Amazon", "Microsoft", "Infosys"]
+      averagePackage: "INR 20.5 LPA",
+      highestPackage: "INR 1.2 Cr",
+      placementPercentage: "98%",
+      totalRecruiters: 180,
+      topRecruiters: ["Google", "Microsoft", "Apple", "Uber"]
     },
-    reviews: [
-      {
-        id: "r1",
-        studentName: "Ananya Sharma",
-        rating: 5,
-        reviewText: "Excellent faculty and a very focused academic environment.",
-        reviewDate: "2026-03-18"
-      },
-      {
-        id: "r2",
-        studentName: "Rahul Verma",
-        rating: 4,
-        reviewText: "Placements are strong and the course structure is industry-aligned.",
-        reviewDate: "2026-02-11"
-      }
-    ]
+    reviews: []
   },
-  c2: {
-    id: "c2",
-    name: "St. Xavier's College",
-    location: "Mumbai, India",
-    rating: 4.5,
-    fees: "INR 1.4L / year",
+  "nit-trichy": {
+    id: "nit-trichy",
+    name: "National Institute of Technology Trichy",
+    state: "Tamil Nadu",
+    location: "Tiruchirappalli, Tamil Nadu",
+    rating: 4.8,
+    fees: 120000,
+    availableCourses: ["BTech", "MTech", "MBA", "MCA"],
     imageUrl:
       "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80",
     description:
-      "A respected institution with strong humanities, commerce, and arts programs supported by active campus life.",
-    establishedYear: 1869,
-    ownershipType: "Private Aided",
-    websiteUrl: "https://xaviers.edu",
-    courses: [
-      {
-        id: "c2-1",
-        name: "B.A. Economics",
-        duration: "3 Years",
-        totalFees: "INR 4.2L",
-        degreeType: "Undergraduate",
-        seatsAvailable: 60
-      },
-      {
-        id: "c2-2",
-        name: "B.Com",
-        duration: "3 Years",
-        totalFees: "INR 4.5L",
-        degreeType: "Undergraduate",
-        seatsAvailable: 80
-      }
-    ],
+      "One of India's most respected NITs with strong core engineering programs.",
+    establishedYear: 1964,
+    ownershipType: "Public",
+    websiteUrl: "https://www.nitt.edu",
+    courses: [],
     placement: {
-      averagePackage: "INR 8.2 LPA",
-      highestPackage: "INR 22 LPA",
-      placementPercentage: "85%",
-      totalRecruiters: 75,
-      topRecruiters: ["Deloitte", "EY", "KPMG", "HDFC Bank"]
+      averagePackage: "INR 16.8 LPA",
+      highestPackage: "INR 45 LPA",
+      placementPercentage: "95%",
+      totalRecruiters: 140,
+      topRecruiters: ["Amazon", "Oracle", "TCS", "Intel"]
     },
-    reviews: [
-      {
-        id: "r3",
-        studentName: "Meera Nair",
-        rating: 4,
-        reviewText: "Great atmosphere for holistic learning and extracurricular growth.",
-        reviewDate: "2026-04-02"
-      }
-    ]
+    reviews: []
   },
-  c3: {
-    id: "c3",
-    name: "Christ University",
-    location: "Bengaluru, India",
+  "vit-vellore": {
+    id: "vit-vellore",
+    name: "VIT Vellore",
+    state: "Tamil Nadu",
+    location: "Vellore, Tamil Nadu",
     rating: 4.6,
-    fees: "INR 2.1L / year",
+    fees: 230000,
+    availableCourses: ["BTech", "MBA", "MCA", "BSc"],
     imageUrl:
       "https://images.unsplash.com/photo-1562774053-0b3d6b1f5d12?auto=format&fit=crop&w=1400&q=80",
     description:
-      "A multidisciplinary university with modern facilities, structured academics, and good industry exposure.",
-    establishedYear: 1969,
+      "Private university known for scale, internships, and diverse programs.",
+    establishedYear: 1984,
     ownershipType: "Private",
-    websiteUrl: "https://christuniversity.in",
-    courses: [
-      {
-        id: "c3-1",
-        name: "BBA",
-        duration: "3 Years",
-        totalFees: "INR 6.3L",
-        degreeType: "Undergraduate",
-        seatsAvailable: 120
-      },
-      {
-        id: "c3-2",
-        name: "MBA",
-        duration: "2 Years",
-        totalFees: "INR 6.8L",
-        degreeType: "Postgraduate",
-        seatsAvailable: 90
-      }
-    ],
+    websiteUrl: "https://vit.ac.in",
+    courses: [],
     placement: {
-      averagePackage: "INR 7.9 LPA",
-      highestPackage: "INR 21 LPA",
-      placementPercentage: "88%",
-      totalRecruiters: 95,
-      topRecruiters: ["Accenture", "Capgemini", "Wipro", "Cognizant"]
+      averagePackage: "INR 9.6 LPA",
+      highestPackage: "INR 88 LPA",
+      placementPercentage: "91%",
+      totalRecruiters: 220,
+      topRecruiters: ["Accenture", "Adobe", "Bosch", "Wipro"]
     },
-    reviews: [
-      {
-        id: "r4",
-        studentName: "Aditya Rao",
-        rating: 5,
-        reviewText: "Well-managed campus and a strong option for business programs.",
-        reviewDate: "2026-01-27"
-      }
-    ]
+    reviews: []
   }
 };
 

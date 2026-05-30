@@ -1,9 +1,11 @@
 export type College = {
   id: string;
   name: string;
+  state: string;
   location: string;
-  fees: string;
+  fees: number;
   rating: number;
+  availableCourses: string[];
   description?: string;
 };
 

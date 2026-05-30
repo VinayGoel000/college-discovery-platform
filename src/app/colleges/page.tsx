@@ -1,109 +1,85 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CollegeFilters, type CollegeFilterState } from "@/components/college/CollegeFilters";
-import { CollegeList } from "@/components/college/CollegeList";
-import { CollegePagination } from "@/components/college/CollegePagination";
-import { CollegeSearch } from "@/components/college/CollegeSearch";
-import { type College } from "@/types";
 
-const colleges: College[] = [
-  {
-    id: "c1",
-    name: "National Institute of Technology",
-    location: "Delhi, India",
-    fees: "INR 1.8L / year",
-    rating: 4.7,
-    description: "A strong engineering-focused institute with a vibrant campus culture."
-  },
-  {
-    id: "c2",
-    name: "St. Xavier's College",
-    location: "Mumbai, India",
-    fees: "INR 1.4L / year",
-    rating: 4.5,
-    description: "Known for academic depth, campus life, and multidisciplinary learning."
-  },
-  {
-    id: "c3",
-    name: "Christ University",
-    location: "Bengaluru, India",
-    fees: "INR 2.1L / year",
-    rating: 4.6,
-    description: "Popular for business, arts, and professional programs with modern facilities."
-  },
-  {
-    id: "c4",
-    name: "Pune Institute of Computer Technology",
-    location: "Pune, India",
-    fees: "INR 1.2L / year",
-    rating: 4.4,
-    description: "Engineering and technology programs with strong industry alignment."
-  }
-];
+import { EmptyState } from "@/components/ui/EmptyState";
+import { CollegeCard } from "@/components/college/CollegeCard";
+import { CollegeSearchBar } from "@/components/college/CollegeSearchBar";
+import { FeesSort } from "@/components/college/FeesSort";
+import { FilterSummary } from "@/components/college/FilterSummary";
+import { RatingSort } from "@/components/college/RatingSort";
+import { StateFilter } from "@/components/college/StateFilter";
+import {
+  defaultCollegeFilters,
+  filterColleges,
+  sortColleges,
+  type CollegeFiltersState
+} from "@/lib/collegeFilters";
+import { mockColleges } from "@/data/mockColleges";
 
 export default function CollegesPage() {
-  const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState<CollegeFilterState>({
-    location: "",
-    minRating: 0,
-    feeRange: "all"
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 4;
+  const [filters, setFilters] = useState<CollegeFiltersState>(defaultCollegeFilters);
 
-  const filteredColleges = useMemo(() => {
-    return colleges.filter((college) => {
-      const matchesSearch =
-        search.trim().length === 0 ||
-        `${college.name} ${college.location}`.toLowerCase().includes(search.toLowerCase());
-      const matchesLocation =
-        filters.location.trim().length === 0 ||
-        college.location.toLowerCase().includes(filters.location.toLowerCase());
-      const matchesRating = college.rating >= filters.minRating;
-      const matchesFeeRange =
-        filters.feeRange === "all" ||
-        (filters.feeRange === "low" && college.fees.includes("1.")) ||
-        (filters.feeRange === "mid" && college.fees.includes("2.")) ||
-        (filters.feeRange === "high" && college.fees.includes("3."));
+  const visibleColleges = useMemo(() => {
+    const filtered = filterColleges(mockColleges, filters);
+    return sortColleges(filtered, filters);
+  }, [filters]);
 
-      return matchesSearch && matchesLocation && matchesRating && matchesFeeRange;
-    });
-  }, [filters.location, filters.minRating, search]);
+  const resetFilters = () => setFilters(defaultCollegeFilters);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="flex flex-col gap-6">
-        <header>
-          <h1 className="text-3xl font-semibold text-slate-900">College Listing</h1>
-          <p className="mt-2 max-w-2xl text-sm text-slate-600">
-            This page is intentionally architecture-first: it uses typed dummy data and prepares
-            the component boundaries for future API integration.
+    <div className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50">
+      <div className="absolute inset-x-0 top-0 -z-10 h-72 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.16),_transparent_60%)]" />
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mb-8 max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
+            College Discovery Platform
           </p>
-        </header>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+            College Search and Filtering System
+          </h1>
+          <p className="mt-4 text-base leading-7 text-slate-600">
+            Search by college name or course, narrow results by state, and sort by fees or rating
+            with a structure that is ready for an API-backed future.
+          </p>
+        </div>
 
-        <div className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <aside className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 shadow-soft">
-            <CollegeSearch value={search} onChange={setSearch} />
-            <CollegeFilters
-              filters={filters}
-              onChange={setFilters}
+        <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+          <aside className="space-y-4 rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
+            <CollegeSearchBar
+              onChange={(search) => setFilters((current) => ({ ...current, search }))}
+              value={filters.search}
+            />
+            <StateFilter
+              onChange={(states) => setFilters((current) => ({ ...current, states }))}
+              value={filters.states}
+            />
+            <FeesSort
+              onChange={(feesSort) => setFilters((current) => ({ ...current, feesSort }))}
+              value={filters.feesSort}
+            />
+            <RatingSort
+              onChange={(ratingSort) => setFilters((current) => ({ ...current, ratingSort }))}
+              value={filters.ratingSort}
             />
           </aside>
 
-          <section className="space-y-4">
-            <CollegeList colleges={filteredColleges} />
-            {filteredColleges.length === 0 ? (
-              <div className="rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] px-4 py-10 text-center text-sm text-slate-500">
-                No colleges match the current search and filter state.
+          <main className="space-y-5">
+            <FilterSummary filters={filters} onReset={resetFilters} />
+
+            {visibleColleges.length === 0 ? (
+              <EmptyState
+                description="Try adjusting your search or filters. You can reset everything and start over in one click."
+                title="No colleges match your search criteria."
+              />
+            ) : (
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {visibleColleges.map((college) => (
+                  <CollegeCard key={college.id} college={college} />
+                ))}
               </div>
-            ) : null}
-            <CollegePagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </section>
+            )}
+          </main>
         </div>
       </div>
     </div>
